@@ -1,35 +1,115 @@
-# Documentation: https://rmk.rs/docs/configuration.html
 [keyboard]
-name = "RMK Keyboard"
-product_name = "RMK Keyboard"
+name = "corne-rmk"
+product_name = "Corne rmk"
 vendor_id = 0x4c4b
 product_id = 0x4643
-manufacturer = "RMK"
-chip = "rp2040"
-
-[matrix]
-# Row and col pins are mandatory
-row_pins = ["PIN_6", "PIN_7", "PIN_8", "PIN_9"]
-col_pins = ["PIN_19", "PIN_20", "PIN_21"]
-
-# RMK uses col2row as the default matrix diode direction, if you want to use a row2col matrix, add `row2col = true`
-# row2col = true
+manufacturer = "rmk"
+chip = "nrf52840"
 
 [layout]
 rows = 4
-cols = 3
-layers = 2
+cols = 12
+layers = 7
 keymap = [
+    # LBASE layer layout 0
     [
-        ["A", "B", "C"],
-        ["Kc1", "Kc2", "Kc3"],
-        ["LCtrl", "MO(1)", "LShift"],
-        ["OSL(1)", "LT(2, Kc9)", "LM(1, LShift | LGui)"]
+        ["Tab", "Q", "W", "E", "R", "T",                                            "Y", "U", "I", "O", "P", "Backslash"],
+        ["Escape", "MT(A, LCtrl)", "MT(S,LAlt)", "MT(D,LGui)", "MT(F, LShift)",      "G",    "H", "MT(J,RShift)", "MT(K,RGui)", "MT(L, RAlt)", "MT(Semicolon, RCtrl)", "Quote"],
+        ["LShift", "Z", "X", "C", "V", "B",                                         "N", "M", "Comma", "Dot", "Slash", "MT(Grave, RShift)"],
+        ["__", "__", "__", "LT(6,Tab)", "MO(1)", "LT(3, Space)",                        "Enter", "MO(2)", "LeftBracket", "__", "__","__"]
     ],
-    [
-        ["_", "TT(1)", "TG(2)"],
-        ["_", "_", "_"],
-        ["_", "_", "_"],
-        ["_", "_", "_"]
-    ],
+     # LLOWER layer (Layer 1)
+     [
+         ["__", "WM(Kc1, LShift)", "WM(Kc2, LShift)", "WM(Kc3, LShift)", "WM(Kc4, LShift)", "WM(Kc5, LShift)", "WM(Kc6, LShift)", "WM(Kc7, LShift)", "WM(Kc8, LShift)", "WM(Kc9, LShift)", "WM(Kc0, LShift)", "_"],
+         ["_", "_", "_", "_", "_", "_",             "Backspace", "WM(Minus, LShift)", "WM(Equal, LShift)", "WM(LeftBracket, LShift)", "WM(RightBracket, LShift)", "_"],
+         ["_", "F7", "F8", "F9", "Tab", "F6", "WM(LeftBracket, LShift)", "WM(RightBracket, LShift)", "WM(Comma, LShift)", "WM(Dot, LShift)", "WM(Slash, LShift)", "WM(Grave, LShift)"],
+         ["Kc2", "_", "_", "_", "_", "__", "__", "MO(3)", "_", "_", "_", "Kc2"]
+     ],
+     #LRAISE layer (Layer 2)
+     [
+         ["_", "Kc1", "Kc2", "Kc3", "Kc4", "Kc5", "Kc6", "Kc7", "Kc8", "Kc9", "Kc0", "WM(Backslash, LShift)"],
+         ["_", "F1", "F2", "F3", "F4", "F5",        "F6", "Minus", "Equal", "LeftBracket", "RightBracket", "_"],
+         ["_", "F7", "F8", "F9", "F10", "F11",      "F12", "WM(Minus, LShift)", "WM(Equal, LShift)", "WM(LeftBracket, LShift)", "WM(RightBracket, LShift)", "Grave"],
+         ["Kc3", "_", "_", "_", "MO(3)", "__", "__", "_", "_", "_", "_", "Kc3"]
+     ],
+    
+     # ADJ layer (Layer 3)
+     [
+         ["MO(5)", "_", "_", "MouseUp",  "PageUp", "PageDown",                      "MouseBtn1", "MouseBtn3","MouseBtn2","MouseWheelUp", "MouseWheelDown", "__"],
+         ["_",      "_", "MouseLeft", "MouseDown", "MouseRight","__",              "Left", "Down", "UP", "Right", "__", "__"],
+         ["_", "_", "_", "_","Home", "End",                                         "MouseBtn1", "MouseBtn2", "__", "__", "__", "__"],
+         ["Kc4", "_", "_", "_", "_", "__", "__", "_", "_", "_", "_", "Kc4"]
+     ],
+    
+     # NAV layer (Layer 4)
+     [
+         ["MO(5)", "_", "_", "MouseUp",  "PageUp", "PageDown",                      "__", "MouseWheelUp", "MouseWheelDown", "__", "__", "__"],
+         ["_",      "_", "MouseLeft", "MouseDown", "MouseRight","__",              "Left", "Down", "UP", "Right", "__", "__"],
+         ["_", "_", "_", "_","Home", "End",                    "MouseBtn1", "MouseBtn2", "Comma", "Dot", "Slash", "RShift"],
+         ["Kc4", "_", "_", "_", "_", "__", "__", "_", "_", "_", "_", "Kc4"]
+     ],
+    
+     # LDEBUG layer (Layer 5)
+     [
+         ["__", "User0", "User1", "User2", "User3", "_", "_", "_", "_", "_", "_", "_"],
+         ["__", "User10", "__", "DebugToggle", "__", "F6", "Left", "Down", "UP", "Down", "Semicolon", "Quote"],
+         ["__", "__", "__", "__", "Home", "Bootloader", "N", "M", "Comma", "Dot", "Slash", "RShift"],
+         ["__", "__", "__", "Kc5", "_", "_",  "_", "_", "_", "__", "__", "__"]
+     ],
+     # NUM layer (Layer 6)
+     [
+         ["_", "_", "_", "_",  "_", "_",                      "__", "MouseWheelUp", "MouseWheelDown", "__", "__", "__"],
+         ["_",      "_", "_", "_", "_","__",              "Left", "Down", "UP", "Right", "__", "__"],
+         ["_", "_", "_", "_","_", "_",                    "MouseBtn1", "MouseBtn2", "Comma", "Dot", "Slash", "RShift"],
+         ["_", "_", "_", "_", "_", "__", "__", "_", "_", "_", "_", "_"]
+     ],
 ]
+
+
+
+[storage]
+
+clear_storage =  true         
+
+[ble]
+enabled = true
+
+[behavior]
+tap_hold = { enable_hrm = true, prior_idle_time = "100ms", hold_timeout = "200ms", post_wait_time = "20ms"}
+
+[split]
+connection = "ble"
+
+[split.central]
+rows = 4
+cols = 6
+row_offset = 0
+col_offset = 0
+ble_addr = [0x18, 0xe2, 0x21, 0x80, 0xc0, 0xc7]
+
+[split.central.matrix]
+
+## promicro pin: 4 5 6 7 
+input_pins = ["P0_22", "P0_24", "P1_00", "P0_11"]
+## promicro pin: 21 20 19 18 15 14
+output_pins = ["P0_31", "P0_29", "P0_02", "P1_15", "P1_13", "P1_11"]
+
+[[split.peripheral]]
+rows = 4
+cols = 6
+row_offset = 0
+col_offset = 6
+ble_addr = [0x7e, 0xfe, 0x73, 0x9e, 0x66, 0xe3]
+
+[split.peripheral.matrix]
+## promicro pin: 4 5 6 7 
+input_pins = ["P0_22", "P0_24", "P1_00", "P0_11"]
+## promicro pin: 21 20 19 18 15 14
+output_pins = [
+    "P1_11",
+    "P1_13", 
+    "P1_15", 
+    "P0_02", 
+    "P0_29", 
+    "P0_31", 
+    ]
