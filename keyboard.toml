@@ -75,7 +75,6 @@ clear_storage =  true
 enabled = true
 
 [behavior]
-tap_hold = { enable_hrm = true, prior_idle_time = "100ms", hold_timeout = "200ms", post_wait_time = "20ms"}
 
 [split]
 connection = "ble"
